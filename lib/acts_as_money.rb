@@ -10,10 +10,16 @@ module CollectiveIdea #:nodoc:
       module ClassMethods
         def money(name, options = {})
           options = {:cents => :cents, :currency => :currency}.merge(options)
+          
+          composed_of_declaration = "composed_of :composed_of_#{name}, :class_name => 'Money',
+            :mapping => [%w(#{options[:cents]} cents)"
+          if options[:currency]
+            composed_of_declaration << ", %w(#{options[:currency]} currency)"
+          end
+          composed_of_declaration << "]"
         
           module_eval <<-end_eval
-            composed_of :composed_of_#{name}, :class_name => 'Money',
-              :mapping => [%w(#{options[:cents]} cents), %w(#{options[:currency] || nil} currency)]
+            #{composed_of_declaration}
           
             def #{name}=(part)
               self.composed_of_#{name} = part.is_a?(Money) ? part : part.to_money
