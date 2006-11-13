@@ -1,4 +1,21 @@
 Money
 =====
 
-Description goes here
+acts_as_money is a fairly trivial plugin that makes it easier to work with the money gem.
+
+  class Product < ActiveRecord::Base
+    money :price
+  end
+  
+This assumes that there are 2 columns in the database, cents (integer) and currency (string).  These fields can be changed by setting the :cents and :currency options.  To use the default currency, you can simple set :currency to false
+
+  class Room < ActiveRecord::Base
+    money :rate, :cents => :rate_in_cents, :currency => :rate_currency
+    money :discount, :cents => :discount_in_cents, :currency => false
+  end
+
+acts_as_money allows you to pass a String, Fixnum, Float or Money object as a parameter to the setter, and it will call #to_money to convert it to a Money object.  This makes it convenient for using money fields in forms.
+
+  r = Room.new :rate => "100.00"
+  r.rate                            # returns <Money:0x249ef9c @currency="USD", @cents=10000>
+
