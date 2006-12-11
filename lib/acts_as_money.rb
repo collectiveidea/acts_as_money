@@ -26,4 +26,14 @@ class Money
   def -@
     Money.new(-@cents, @currency)
   end
+  
+  def blank?
+    zero?
+  end
+  
+  def format_with_zero(*rules)
+    cents == 0 ? "$0" : format_with_free(rules)
+  end
+  alias_method :format_with_free, :format
+  alias_method :format, :format_with_zero
 end
