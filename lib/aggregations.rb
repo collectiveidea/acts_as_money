@@ -157,6 +157,10 @@ module ActiveRecord
               end
               return instance_variable_get("@#{name}")
             end
+            
+            define_method("#{name}?") do
+              !self.send(name).blank?
+            end
           end
 
         end        
