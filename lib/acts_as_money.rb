@@ -53,5 +53,9 @@ class Money
     end
   end
   alias_method :format_with_free, :format
-  alias_method :format, :format_with_zero
-end
+  alias_method :format, :format_with_zero 
+  
+  def dollars
+    to_s.to_f
+  end
+end  
