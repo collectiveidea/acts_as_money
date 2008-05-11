@@ -8,8 +8,13 @@ module CollectiveIdea #:nodoc:
       end
 
       module ClassMethods
+        
+        def default_currency
+          'USD'
+        end
+        
         def money(name, options = {})
-          options = {:cents => :cents, :currency => :currency}.merge(options)
+          options = {:cents => "#{name}_in_cents".to_sym, :currency => default_currency}.merge(options)
           mapping = [[options[:cents].to_s, 'cents']]
           mapping << [options[:currency].to_s, 'currency'] if options[:currency]
           
