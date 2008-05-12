@@ -7,7 +7,7 @@ acts_as_money is a fairly trivial plugin that makes it easier to work with the m
     money :price
   end
   
-This assumes that there are 2 columns in the database, cents (integer) and currency (string).  These fields can be changed by setting the :cents and :currency options.  To use the default currency, you can simple set :currency to false
+This assumes that there are 2 columns in the database, price_in_cents (integer) and currency (string).  These fields can be changed by setting the :cents and :currency options.  To use the default currency (USD), you can simply leave off :currency.
 
   class Room < ActiveRecord::Base
     money :rate, :cents => :rate_in_cents, :currency => :rate_currency
