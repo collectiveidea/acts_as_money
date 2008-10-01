@@ -1,7 +1,6 @@
-Money
-=====
+= ActsAsMoney
 
-acts_as_money is a fairly trivial plugin that makes it easier to work with the money gem.
+acts_as_money is a plugin that makes it easier to work with the money gem.
 
   class Product < ActiveRecord::Base
     money :price
@@ -19,3 +18,7 @@ acts_as_money allows you to pass a String, Fixnum, Float or Money object as a pa
   r = Room.new :rate => "100.00"
   r.rate                            # returns <Money:0x249ef9c @currency="USD", @cents=10000>
 
+
+= Compatibility
+
+This plugin is compatible with the current edge-rails that is slated to be 2.2. If you are using Rails <= 2.1, check out the "rails-2.1" tag from git.
